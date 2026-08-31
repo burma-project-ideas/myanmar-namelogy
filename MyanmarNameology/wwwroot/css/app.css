@@ -42,6 +42,40 @@ a {
     color: inherit;
 }
 
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.skip-link {
+    position: fixed;
+    top: 8px;
+    left: 8px;
+    z-index: 1100;
+    border-radius: var(--radius);
+    background: var(--ink);
+    color: var(--paper);
+    font-weight: 800;
+    padding: 12px 16px;
+    transform: translateY(calc(-100% - 16px));
+}
+
+.skip-link:focus {
+    transform: translateY(0);
+}
+
+:where(a, button, input):focus-visible {
+    outline: 3px solid var(--jade-dark);
+    outline-offset: 3px;
+}
+
 .page-shell {
     width: min(1160px, calc(100% - 32px));
     margin: 0 auto;
@@ -180,6 +214,12 @@ p {
     font-weight: 800;
 }
 
+.required-text {
+    color: var(--muted);
+    font-size: 0.82rem;
+    font-weight: 600;
+}
+
 .input-action {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
@@ -198,9 +238,8 @@ p {
     outline: none;
 }
 
-.input-action input:focus {
+.input-action input:focus-visible {
     border-color: var(--jade);
-    box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.16);
 }
 
 .input-action button {
@@ -224,6 +263,18 @@ p {
     color: var(--muted);
     font-size: 0.86rem;
     line-height: 1.55;
+}
+
+.input-error {
+    margin: 8px 0 0;
+    color: var(--red);
+    font-size: 0.9rem;
+    font-weight: 700;
+    line-height: 1.55;
+}
+
+.input-error[hidden] {
+    display: none;
 }
 
 .result-panel {
@@ -414,32 +465,62 @@ p {
     gap: 8px;
 }
 
-.value-row {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 38px;
-    gap: 10px;
-    align-items: center;
-    border-bottom: 1px solid var(--line);
-    padding-bottom: 8px;
+.value-table table {
+    width: 100%;
+    border-collapse: collapse;
 }
 
-.value-row:last-child {
+.value-table thead th {
+    color: var(--muted);
+    font-size: 0.76rem;
+    text-align: left;
+}
+
+.value-table thead th:last-child {
+    text-align: center;
+}
+
+.value-table tbody tr {
+    border-bottom: 1px solid var(--line);
+}
+
+.value-table tbody tr:last-child {
     border-bottom: 0;
+}
+
+.value-table tbody th,
+.value-table tbody td {
+    padding: 8px 0;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.value-table tbody th {
+    padding-right: 10px;
+    font-weight: inherit;
+}
+
+.value-table tbody td {
+    width: 38px;
+}
+
+.value-table tbody tr:last-child th,
+.value-table tbody tr:last-child td {
     padding-bottom: 0;
 }
 
-.value-row strong,
-.value-row span {
+.value-table tbody th strong,
+.value-table tbody th span {
     display: block;
 }
 
-.value-row span {
+.value-table tbody th span {
     color: var(--muted);
     font-size: 0.86rem;
     overflow-wrap: anywhere;
 }
 
-.value-row b {
+.value-table tbody td b {
     display: grid;
     width: 38px;
     height: 38px;
@@ -486,10 +567,41 @@ p {
 }
 
 #blazor-error-ui .dismiss {
+    min-width: 32px;
+    min-height: 32px;
+    border: 0;
+    background: transparent;
+    color: inherit;
     cursor: pointer;
     position: absolute;
     right: 0.75rem;
     top: 0.65rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .input-action button:hover {
+        transform: none;
+    }
+}
+
+@media (forced-colors: active) {
+    :where(a, button, input):focus-visible {
+        outline-color: Highlight;
+    }
+
+    .result-panel--success,
+    .footnote {
+        border-color: CanvasText;
+    }
 }
 
 .blazor-error-boundary {

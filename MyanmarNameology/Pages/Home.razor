@@ -1,12 +1,12 @@
 @page "/"
 
-<PageTitle>Myanmar Nameology</PageTitle>
+<PageTitle>နာမည်ကိန်း တွက်စက် | Myanmar Nameology</PageTitle>
 
-<main class="page-shell">
-    <header class="topbar" aria-label="App header">
-        <a class="brand" href="/" aria-label="Myanmar Nameology home">
+<main id="main-content" class="page-shell" tabindex="-1">
+    <header class="topbar">
+        <a class="brand" href="/">
             <span class="brand-mark">
-                <img src="logo.svg" alt="" width="44" height="44" />
+                <img src="logo.svg" alt="" width="44" height="44" aria-hidden="true" />
             </span>
             <span>
                 <strong>Myanmar Nameology</strong>
@@ -27,48 +27,58 @@
                 </p>
             </div>
 
-            <form class="name-form" @onsubmit="Calculate" @onsubmit:preventDefault="true">
-                <label for="name-input">နာမည်</label>
+            <form class="name-form" novalidate @onsubmit="Calculate" @onsubmit:preventDefault="true">
+                <label for="name-input">
+                    နာမည် <span class="required-text">(မဖြစ်မနေ)</span>
+                </label>
                 <div class="input-action">
                     <input id="name-input"
                            type="text"
                            value="@_name"
                            @oninput="HandleNameInput"
-                           aria-describedby="name-input-hint"
+                           required
+                           aria-required="true"
+                           aria-invalid="@HasInputError"
+                           aria-describedby="name-input-hint name-input-error"
                            autocomplete="name"
                            spellcheck="false"
                            placeholder="မြန်မာနာမည် ထည့်ပါ" />
                     <button type="submit">တွက်မယ်</button>
                 </div>
                 <p id="name-input-hint" class="input-hint">
-                    Eg. မြန်မာစာလုံးဖြင့် မိမိနာမည်ကို ရိုက်ထည့်ပါ။ စတင်အက္ခရာကီးကို အလိုအလျောက်ယူတွက်ပါမယ်။
+                    ဥပမာ — မြန်မာစာလုံးဖြင့် မိမိနာမည်ကို ရိုက်ထည့်ပါ။ စတင်အက္ခရာကီးကို အလိုအလျောက်ယူတွက်ပါမယ်။
+                </p>
+                <p id="name-input-error" class="input-error" role="@(HasInputError ? "alert" : null)" hidden="@(!HasInputError)">
+                    @(_result?.Message)
                 </p>
             </form>
 
-            <section class="@ResultClass" aria-live="polite">
+            <p class="sr-only" role="status" aria-live="polite" aria-atomic="true">@_resultAnnouncement</p>
+
+            <section class="@ResultClass" aria-labelledby="result-title">
                 @if (_result is null)
                 {
                     <div class="result-empty">
-                        <span class="result-kicker">Ready</span>
-                        <h2>နာမည်တစ်ခု စမ်းတွက်ကြည့်ပါ</h2>
+                        <span class="result-kicker">အသင့်</span>
+                        <h2 id="result-title">နာမည်တစ်ခု စမ်းတွက်ကြည့်ပါ</h2>
                         <p>ရလဒ်၊ အက္ခရာတန်ဖိုး၊ စုစုပေါင်းနဲ့ အကြွင်းကို ဒီနေရာမှာ ပြပါမယ်။</p>
                     </div>
                 }
                 else if (!_result.IsSuccess)
                 {
                     <div class="result-empty">
-                        <span class="result-kicker">Notice</span>
-                        <h2>@(_result.Status == NameologyResultStatus.Empty ? "နာမည်ထည့်ပါ" : "တွက်လို့မရပါ")</h2>
+                        <span class="result-kicker">အသိပေးချက်</span>
+                        <h2 id="result-title">@(_result.Status == NameologyResultStatus.Empty ? "နာမည်ထည့်ပါ" : "တွက်လို့မရပါ")</h2>
                         <p>@_result.Message</p>
                     </div>
                 }
                 else
                 {
                     <div class="result-main">
-                        <div class="result-number" aria-label="Remainder result">@_result.Remainder</div>
+                        <div class="result-number">@_result.Remainder</div>
                         <div>
                             <span class="result-kicker">@_result.Remainder ကြွင်း</span>
-                            <h2>@_result.Meaning?.Title</h2>
+                            <h2 id="result-title">@_result.Meaning?.Title</h2>
                             <p>@_result.Meaning?.Text</p>
                         </div>
                     </div>
@@ -110,9 +120,9 @@
                 <strong>၉</strong>
             </div>
 
-            <section class="formula-panel">
-                <h2>တွက်ချက်ပုံ</h2>
-                <div class="formula-strip" aria-label="Formula">
+            <section class="formula-panel" aria-labelledby="formula-title">
+                <h2 id="formula-title">တွက်ချက်ပုံ</h2>
+                <div class="formula-strip">
                     <span>အက္ခရာ</span>
                     <b>+</b>
                     <span>၇</span>
@@ -122,18 +132,28 @@
                 <p>အကြွင်း ၀ ဖြစ်ရင် ၉ အဖြစ်တွက်ပါတယ်။</p>
             </section>
 
-            <section class="value-table">
-                <h2>နေ့နံတန်ဖိုး</h2>
-                @foreach (var group in NameologyCalculator.LetterGroups)
-                {
-                    <article class="value-row">
-                        <div>
-                            <strong>@group.DayName</strong>
-                            <span>@string.Join(" ", group.Letters)</span>
-                        </div>
-                        <b>@group.MyanmarNumber</b>
-                    </article>
-                }
+            <section class="value-table" aria-labelledby="value-table-title">
+                <h2 id="value-table-title">နေ့နံတန်ဖိုး</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">နေ့နံနှင့် အက္ခရာများ</th>
+                            <th scope="col">တန်ဖိုး</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var group in NameologyCalculator.LetterGroups)
+                        {
+                            <tr>
+                                <th scope="row">
+                                    <strong>@group.DayName</strong>
+                                    <span>@string.Join(" ", group.Letters)</span>
+                                </th>
+                                <td><b>@group.MyanmarNumber</b></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </section>
 
             <p class="footnote">
@@ -146,6 +166,9 @@
 @code {
     private string _name = string.Empty;
     private NameologyResult? _result;
+    private string _resultAnnouncement = string.Empty;
+
+    private bool HasInputError => _result is { IsSuccess: false };
 
     private string ResultClass =>
         _result is { IsSuccess: true } ? "result-panel result-panel--success" : "result-panel";
@@ -158,11 +181,15 @@
     private void HandleNameInput(ChangeEventArgs args)
     {
         _name = args.Value?.ToString() ?? string.Empty;
-        Calculate();
+        _result = null;
+        _resultAnnouncement = string.Empty;
     }
 
     private void Calculate()
     {
         _result = NameologyCalculator.Calculate(_name);
+        _resultAnnouncement = _result.IsSuccess
+            ? $"{_result.Message} {_result.Remainder} ကြွင်း။ {_result.Meaning?.Title}။"
+            : string.Empty;
     }
 }
