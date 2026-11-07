@@ -1,4 +1,8 @@
-# MyanmarNameology
+# Myanmar Namelogy (မြန်မာနာမည်ကိန်းတွက်စက်)
+
+[Burma Project Ideas](https://github.com/burma-project-ideas) အောက်မှာ နောက်လာမယ့်သူတွေ App Flow နဲ့ Data ကို လေ့လာပြီး ကိုယ်နှစ်သက်တဲ့ Programming Language နဲ့ ပြန်ရေးကြည့်နိုင်ဖို့ ထားပေးထားတဲ့ Project ပါ။ Organization ဆီ ပြောင်းရွှေ့ထားခြင်းက မူရင်း Creator နဲ့ Data Source Credit ကို အစားထိုးခြင်း မဟုတ်ပါဘူး။
+
+[App ကို ဒီမှာ ဖွင့်နိုင်ပါတယ်](https://myanmar-nameology.vercel.app/)။ Repository အမည်ပြောင်းပေမယ့် Live Domain ကို မပြောင်းထားပါဘူး။
 
 မြန်မာနာမည်ကိန်းတွက်စက်ကို Blazor WebAssembly နဲ့ တည်ဆောက်ထားတဲ့ compact web app ဖြစ်ပါတယ်။ နာမည်ထည့်ပြီး မြန်မာအက္ခရာနေ့နံတန်ဖိုးကို တွက်ကာ `၇ ပေါင်း`၊ `၉ နဲ့စား` ပြီး အကြွင်းကိန်းအလိုက် ရလဒ်အဓိပ္ပာယ်ကို ပြပေးပါတယ်။
 
@@ -22,7 +26,7 @@
 | --- | --- | --- | --- | --- |
 | <a href="https://github.com/sannlynnhtun-coding"><img src="https://github.com/sannlynnhtun-coding.png?size=144" width="72" alt="sannlynnhtun-coding avatar"><br>sannlynnhtun-coding</a> | <a href="https://github.com/theinhtetaung-dev"><img src="https://github.com/theinhtetaung-dev.png?size=144" width="72" alt="theinhtetaung-dev avatar"><br>theinhtetaung-dev</a> | <a href="https://github.com/phonewinttun-dev"><img src="https://github.com/phonewinttun-dev.png?size=144" width="72" alt="phonewinttun-dev avatar"><br>phonewinttun-dev</a> | <a href="https://github.com/hlaingmyoaungdeveloper"><img src="https://github.com/hlaingmyoaungdeveloper.png?size=144" width="72" alt="hlaingmyoaungdeveloper avatar"><br>hlaingmyoaungdeveloper</a> | <a href="https://github.com/thirilinn-dev"><img src="https://github.com/thirilinn-dev.png?size=144" width="72" alt="thirilinn-dev avatar"><br>thirilinn-dev</a> |
 
-## App Flow
+## App ရဲ့ Workflow
 
 1. User က မြန်မာနာမည်ကို input box ထဲမှာ ရိုက်ထည့်သည်။
 2. `တွက်မယ်` ခလုတ်ကို နှိပ်သည့်အခါ (သို့) form ကို submit လုပ်သည့်အခါ `Home.razor` က `NameologyCalculator.Calculate(...)` ကို ခေါ်သည်။
@@ -60,7 +64,7 @@
 4. မြန်မာအက္ခရာမပါသော input ဖြစ်ရင် app က တွက်လို့မရကြောင်း friendly message ပြပေးပါတယ်။
 5. Empty input ဖြစ်ရင် နာမည်ထည့်ရန် prompt ပြပေးပါတယ်။
 
-## Development
+## Local မှာ Run မယ်
 
 လိုအပ်ချက်:
 
@@ -90,7 +94,7 @@ Build:
 dotnet build MyanmarNameology.slnx
 ```
 
-## Project Structure
+## Project ဖွဲ့စည်းပုံ
 
 ```text
 MyanmarNameology/
@@ -106,7 +110,7 @@ MyanmarNameology/
 └─ .github/workflows/deploy-vercel.yml
 ```
 
-## Deploy Flow
+## Build နဲ့ Deployment
 
 GitHub Actions workflow က Vercel ကို deploy လုပ်ဖို့ ပြင်ထားပါတယ်။ Repository secrets ထဲမှာ အောက်ပါ values တွေလိုအပ်ပါတယ်။
 
@@ -117,3 +121,12 @@ VERCEL_PROJECT_ID
 ```
 
 `main` branch ကို push လုပ်တဲ့အခါ build output ကို Vercel project သို့ deploy လုပ်နိုင်ပါတယ်။ SPA routing အတွက် `vercel.json` ထဲမှာ rewrite rule ပါဝင်ပြီး Blazor `_framework` assets တွေကို long-term cache header သတ်မှတ်ထားပါတယ်။
+
+
+## အဓိက ပံ့ပိုးသူများနှင့် မူရင်း Data
+
+မူရင်း README ရဲ့ Contributors Table ကို ဆက်လက်ထိန်းသိမ်းထားပါတယ်။ တွက်ချက်နည်းရဲ့ မူရင်းစာအုပ်/ရေးသားသူကို Repository မှာ သီးခြားမဖော်ပြထားပါဘူး။
+
+## ကိုယ်တိုင် ပြန်ရေးကြည့်ချင်ရင်
+
+အပေါ်က App Workflow ကို အဆင့်လိုက် လေ့လာပြီး UI၊ Data နဲ့ State ကို ခွဲရေးကြည့်နိုင်ပါတယ်။ Bug Report၊ Documentation နဲ့ Implementation အသစ်တွေကို Issue / Pull Request နဲ့ ပံ့ပိုးနိုင်ပါတယ်။ မူရင်းပံ့ပိုးသူနဲ့ Data Credit ကို ဆက်လက်ထိန်းသိမ်းပါ။
