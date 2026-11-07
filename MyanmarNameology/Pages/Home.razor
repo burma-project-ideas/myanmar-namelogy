@@ -14,12 +14,11 @@
             </span>
         </a>
 
-        <span class="status-pill">၇ ပေါင်း · ၉ စား</span>
+        <nav aria-label="Page navigation"><a href="#calculator-title">တွက်စက်</a><a href="#value-table-title">နေ့နံတန်ဖိုး</a><span class="ui-badge">၇ ပေါင်း · ၉ စား</span></nav>
     </header>
 
-    <section class="calculator-layout" aria-labelledby="calculator-title">
-        <div class="calculator-panel">
-            <div class="panel-heading">
+    <p class="ui-breadcrumb">Burma Project Ideas <span>/</span> Myanmar Namelogy</p>
+    <div class="ui-heading">            <div class="panel-heading">
                 <p class="eyebrow">မြန်မာ နာမည်ဗေဒ</p>
                 <h1 id="calculator-title">နာမည်ကိန်း တွက်စက်</h1>
                 <p>
@@ -27,6 +26,9 @@
                 </p>
             </div>
 
+</div>
+    <section class="calculator-layout" aria-labelledby="calculator-title">
+        <div class="calculator-panel"><div class="ui-card-heading"><h2>နာမည်ကိန်း တွက်မယ်</h2><p>မိမိနာမည်ကို ထည့်ပြီး အက္ခရာတန်ဖိုးနဲ့ ရလဒ်ကို ကြည့်ပါ။</p></div>
             <form class="name-form" novalidate @onsubmit="Calculate" @onsubmit:preventDefault="true">
                 <label for="name-input">
                     နာမည် <span class="required-text">(မဖြစ်မနေ)</span>
@@ -161,6 +163,7 @@
             </p>
         </aside>
     </section>
+<footer class="ui-footer"><span>Myanmar Namelogy</span><a href="https://github.com/burma-project-ideas/myanmar-namelogy">Burma Project Ideas</a></footer>
 </main>
 
 @code {
