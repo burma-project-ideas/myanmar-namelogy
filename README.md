@@ -134,3 +134,11 @@ VERCEL_PROJECT_ID
 ## Production Deployment Path
 
 Production ကို `.github/workflows/deploy-vercel.yml` က .NET Publish လုပ်ပြီး `wwwroot` ကို Vercel ဆီ Deploy လုပ်ပါတယ်။ Source Repository ကို Build မလုပ်ဘဲ Publish လုပ်တဲ့ Vercel Git Auto-deploy နဲ့ ပြိုင်မဖြစ်အောင် `vercel.json` ရဲ့ `git.deploymentEnabled` ကို `false` သတ်မှတ်ထားပါတယ်။ `main` Push နဲ့ Manual Workflow Run တွေက GitHub Actions မှတစ်ဆင့် ဆက် Deploy လုပ်ပါတယ်။ Live URL က [myanmar-nameology.vercel.app](https://myanmar-nameology.vercel.app/) ပါ။
+
+## UI Design Update
+
+လက်ရှိ Interface က [Untitled UI](https://www.untitledui.com/react/components) ရဲ့ Form၊ Card၊ Table၊ Badge နဲ့ Page Header Visual Patterns ကို **Blazor နဲ့ ပြန်လည်ဖန်တီးထားတာ** ပါ။ React Component Package ကို သုံးထားတာ မဟုတ်ပါဘူး။ White/Gray Surfaces၊ Restrained Purple Accent၊ Visible Focus နဲ့ Responsive Layout ကို အသုံးပြုထားပါတယ်။ မူရင်း App Data၊ Calculation နဲ့ Browser Storage Keys တွေကို ဆက်လက်ထိန်းသိမ်းထားပါတယ်။ Myanmar စာအတွက် Self-hosted Padauk Font ကို သုံးပြီး Font Notice ကို `wwwroot/fonts/OFL-Padauk.txt` မှာ ထိန်းသိမ်းထားပါတယ်။
+
+![Redesigned desktop interface](screenshots/redesign-desktop.jpg)
+
+[Mobile preview](screenshots/redesign-mobile.jpg)
