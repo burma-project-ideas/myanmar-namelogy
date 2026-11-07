@@ -54,6 +54,16 @@ jobs:
       - name: Publish Blazor WebAssembly
         run: dotnet publish ${{ env.PROJECT_PATH }} --configuration Release --no-restore --output ${{ env.PUBLISH_OUTPUT }}
 
+      - name: Verify published WebAssembly assets
+        shell: bash
+        run: |
+          test -s "${PUBLISH_OUTPUT}/wwwroot/index.html"
+          if grep -Fq '#[.' "${PUBLISH_OUTPUT}/wwwroot/index.html"; then
+            echo "Unresolved asset fingerprint in published index.html."
+            exit 1
+          fi
+          find "${PUBLISH_OUTPUT}/wwwroot/_framework" -name 'blazor.webassembly*.js' -print -quit | grep -q .
+
       - name: Prepare static deployment
         shell: bash
         run: |

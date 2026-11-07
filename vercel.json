@@ -17,5 +17,8 @@
       "source": "/((?!_framework/|css/|icon-192.png|favicon.png|.*\\..*$).*)",
       "destination": "/index.html"
     }
-  ]
+  ],
+  "git": {
+    "deploymentEnabled": false
+  }
 }

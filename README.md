@@ -2,7 +2,7 @@
 
 [Burma Project Ideas](https://github.com/burma-project-ideas) အောက်မှာ နောက်လာမယ့်သူတွေ App Flow နဲ့ Data ကို လေ့လာပြီး ကိုယ်နှစ်သက်တဲ့ Programming Language နဲ့ ပြန်ရေးကြည့်နိုင်ဖို့ ထားပေးထားတဲ့ Project ပါ။ Organization ဆီ ပြောင်းရွှေ့ထားခြင်းက မူရင်း Creator နဲ့ Data Source Credit ကို အစားထိုးခြင်း မဟုတ်ပါဘူး။
 
-[မူရင်း Demo Link](https://myanmar-nameology.vercel.app/) က 2026-11-08 စစ်ဆေးချိန်မှာ HTTP 404 ပြန်ပေးထားပါတယ်။ Local Run Commands နဲ့ စမ်းသုံးနိုင်ပါတယ်။ Repository အမည်ပြောင်းပေမယ့် Live Domain ကို မပြောင်းထားပါဘူး။
+[App ကို ဒီမှာ ဖွင့်နိုင်ပါတယ်](https://myanmar-nameology.vercel.app/)။ 2026-11-08 မှာ Live Calculator နဲ့ Published Framework Assets ကို စစ်ဆေးထားပါတယ်။ Repository အမည်ပြောင်းပေမယ့် Live Domain ကို မပြောင်းထားပါဘူး။
 
 မြန်မာနာမည်ကိန်းတွက်စက်ကို Blazor WebAssembly နဲ့ တည်ဆောက်ထားတဲ့ compact web app ဖြစ်ပါတယ်။ နာမည်ထည့်ပြီး မြန်မာအက္ခရာနေ့နံတန်ဖိုးကို တွက်ကာ `၇ ပေါင်း`၊ `၉ နဲ့စား` ပြီး အကြွင်းကိန်းအလိုက် ရလဒ်အဓိပ္ပာယ်ကို ပြပေးပါတယ်။
 
@@ -130,3 +130,7 @@ VERCEL_PROJECT_ID
 ## ကိုယ်တိုင် ပြန်ရေးကြည့်ချင်ရင်
 
 အပေါ်က App Workflow ကို အဆင့်လိုက် လေ့လာပြီး UI၊ Data နဲ့ State ကို ခွဲရေးကြည့်နိုင်ပါတယ်။ Bug Report၊ Documentation နဲ့ Implementation အသစ်တွေကို Issue / Pull Request နဲ့ ပံ့ပိုးနိုင်ပါတယ်။ မူရင်းပံ့ပိုးသူနဲ့ Data Credit ကို ဆက်လက်ထိန်းသိမ်းပါ။
+
+## Production Deployment Path
+
+Production ကို `.github/workflows/deploy-vercel.yml` က .NET Publish လုပ်ပြီး `wwwroot` ကို Vercel ဆီ Deploy လုပ်ပါတယ်။ Source Repository ကို Build မလုပ်ဘဲ Publish လုပ်တဲ့ Vercel Git Auto-deploy နဲ့ ပြိုင်မဖြစ်အောင် `vercel.json` ရဲ့ `git.deploymentEnabled` ကို `false` သတ်မှတ်ထားပါတယ်။ `main` Push နဲ့ Manual Workflow Run တွေက GitHub Actions မှတစ်ဆင့် ဆက် Deploy လုပ်ပါတယ်။ Live URL က [myanmar-nameology.vercel.app](https://myanmar-nameology.vercel.app/) ပါ။
