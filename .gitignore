@@ -9,3 +9,5 @@ TestResults/
 *.nupkg
 artifacts/
 publish/
+
+node_modules/
